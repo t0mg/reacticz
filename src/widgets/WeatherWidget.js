@@ -16,7 +16,7 @@ class WeatherWidget extends Component {
     const device = this.props.device;
     switch (device.dtype) {
       case "Temp" :
-        return { temp: device.svalue1 };
+        return { temp: Number(device.svalue1).toFixed(1) };
       case "Temp + Humidity" :
         return { temp: device.svalue1, hum: device.svalue2 };
       case "Temp + Humidity + Baro" :
