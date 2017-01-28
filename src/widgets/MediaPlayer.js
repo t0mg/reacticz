@@ -31,16 +31,6 @@ class MediaPlayer extends Component {
       color: theme.textOn,
       background: theme.buttonOn
     }
-    const gradient = 'repeating-linear-gradient(-45deg, _corner, _corner 20%, _bg 20%, _bg 80%, _corner 80%, _corner 100%)';
-    if (this.props.pushButton) {
-      style.color = theme.textMixed;
-      style.background = gradient.replace(/_corner/g, theme.buttonMixed).replace(/_bg/g, theme.buttonOff);
-      return style;
-    }
-    if (this.props.valueText === "Mixed") {
-      style.color = theme.textMixed;
-      style.background = gradient.replace(/_corner/g, theme.buttonOn).replace(/_bg/g, theme.buttonOff);
-    }
     if (this.props.valueText === "Off" || this.props.value === 0) {
       style.color = theme.textOff;
       style.background =  theme.buttonOff;
@@ -50,8 +40,9 @@ class MediaPlayer extends Component {
 
   render() {
     const valueText = this.props.valueText || (this.props.value === 0 ? 'Off' : 'On');
+	const valuePlaying = ((this.props.playing === "100" && valueText === "On") ? 'Loading...' : ((this.props.playing === "100" && valueText === "Off") ? 'Off' : this.props.playing));
     return (
-	  <span><button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<br/><i className="playing">{this.props.playing}</i></button></span>
+	  <span><button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<br/><i className="playing">{valuePlaying}</i></button></span>
     );
   }
 
