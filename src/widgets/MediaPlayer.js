@@ -43,7 +43,7 @@ class MediaPlayer extends Component {
     const valueText = this.props.valueText || (this.props.value === 0 ? 'Off' : 'On');
     const valuePlaying = ((this.props.playing === "100" && valueText === "On") ? 'Loading...' : ((this.props.playing === "100" && valueText === "Off") ? 'Off' : this.props.playing));
     return (
-	  <button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<br/><i className="playing">{valuePlaying}</i></button>
+	  <button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<i className="playing">{valuePlaying}</i></button>
     );
   }
 
