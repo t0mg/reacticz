@@ -57,8 +57,8 @@ class DeviceWidget extends Component {
       case "Media Player" :
         return <MediaPlayer idx={device.idx} label={device.name}
             value={device.nvalue}
-			      playing={device.svalue1}
-			      {...this.props} />;
+            playing={device.svalue1}
+            {...this.props} />;
       case "Selector" :
         return <SwitchSelector idx={device.idx} label={device.name}
             value={device.svalue1}
