@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MqttClientSingleton from '../util/MqttClientSingleton'
+import './SwitchOnOff.css';
 import './MediaPlayer.css';
 
 class MediaPlayer extends Component {
@@ -40,9 +41,9 @@ class MediaPlayer extends Component {
 
   render() {
     const valueText = this.props.valueText || (this.props.value === 0 ? 'Off' : 'On');
-    const valuePlaying = ((this.props.playing === "100" && valueText === "On") ? 'Loading...' : ((this.props.playing === "100" && valueText === "Off") ? 'Off' : this.props.playing));
+	const valuePlaying = ((this.props.playing === "100" && valueText === "On") ? 'Loading...' : ((this.props.playing === "100" && valueText === "Off") ? 'Off' : this.props.playing));
     return (
-	  <span><button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<br/><i className="playing">{valuePlaying}</i></button></span>
+	  <button className="switch" style={this.getButtonStyle()} onClick={this.handleClick} title={valueText}>{this.props.label}<br/><i className="playing">{valuePlaying}</i></button>
     );
   }
 
