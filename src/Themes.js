@@ -29,7 +29,7 @@ const Themes = {
     textOff: '#808080',
     textOn: 'white'
   },
-     'Light Blue' : {
+  'Light Blue' : {
     background: '#99CCFF',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',

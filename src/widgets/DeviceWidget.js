@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AlertWidget from './AlertWidget'
+import ContactWidget from './ContactWidget'
+import MediaPlayer from './MediaPlayer'
 import PercentWidget from './PercentWidget'
 import SwitchOnOff from './SwitchOnOff'
 import SwitchBlinds from './SwitchBlinds'
@@ -53,12 +55,20 @@ class DeviceWidget extends Component {
       case "On/Off" :
         return <SwitchOnOff idx={device.idx} label={device.name}
             value={device.nvalue} {...this.props} />;
+      case "Media Player" :
+        return <MediaPlayer idx={device.idx} label={device.name}
+            value={device.nvalue}
+            playing={device.svalue1}
+            {...this.props} />;
       case "Selector" :
         return <SwitchSelector idx={device.idx} label={device.name}
             value={device.svalue1}
             levels={device.LevelNames.split('|')}
             useButtons={device.SelectorStyle === "0"}
             {...this.props} />;
+      case "Contact" :
+        return <ContactWidget label={device.name} value={device.svalue1}
+            {...this.props} />
       default:
         break;
     }
