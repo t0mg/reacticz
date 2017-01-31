@@ -29,7 +29,7 @@ const Themes = {
     textOff: '#808080',
     textOn: 'white'
   },
-    'Light Blue' : {
+     'Light Blue' : {
     background: '#99CCFF',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -37,12 +37,12 @@ const Themes = {
     blindTextOn: '#FBC02D',
     buttonMixed: '#4a4a4a',
     buttonOff: '#8a8a8a',
-    buttonOn: '#99CCFF',
+    buttonOn: '#3366FF',
     menuButton: '#666',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
-    textOn: 'black'
+    textOn: 'white'
   },
     'Light Green' : {
     background: '#66FF99',
@@ -52,12 +52,12 @@ const Themes = {
     blindTextOn: '#FBC02D',
     buttonMixed: '#4a4a4a',
     buttonOff: '#8a8a8a',
-    buttonOn: '#66FF99',
+    buttonOn: '#009900',
     menuButton: '#666',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
-    textOn: 'black'
+    textOn: 'white'
   }
 }
 export default Themes
