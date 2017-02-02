@@ -18,7 +18,7 @@ class WeatherWidget extends Component {
     switch (device.dtype) {
       case "Temp" :
         return { temp: temp };
-	  case "Humidity" :
+      case "Humidity" :
         return { humonly: device.nvalue, humstat: device.svalue1 };
       case "Temp + Humidity" :
         return { temp: temp, hum: device.svalue2 };
