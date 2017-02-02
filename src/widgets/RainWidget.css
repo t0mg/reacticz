@@ -1,0 +1,7 @@
+.RainWidget .rain:after {
+  content: ' mm';
+}
+
+.RainWidget .rate:after {
+  content: ' mm/h';
+}
