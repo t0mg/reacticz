@@ -132,7 +132,7 @@ class DeviceWidget extends Component {
             speed={Number(device.svalue3)}
             {...this.props} />
       case "Rain" :
-        return <RainWidget idx={device.idx} label={device.name}
+        return <RainWidget label={device.name}
             rain={Number(device.nvalue)}
             rate={Number(device.svalue1)}
             {...this.props} />
