@@ -8,8 +8,8 @@ class RainWidget extends Component {
     return (
       <GenericWidget class="RainWidget" icon="cloud"
           isOn={this.props.rain > 0}
-          value1={<div className="rain">{this.props.rain}</div>}
-          value2={<div className="rate">{this.props.rate}</div>}
+          value1={this.props.rain}
+          value2={this.props.rate}
           {...this.props} />
     );
   }
