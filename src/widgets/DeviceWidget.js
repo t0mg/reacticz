@@ -158,8 +158,8 @@ class DeviceWidget extends Component {
             {...this.props} />
       case 'Rain' :
         return <RainWidget label={device.name}
-            rain={Number(device.nvalue)}
-            rate={Number(device.svalue1)}
+            rain={Number(device.svalue2).toFixed(1)}
+            rate={Number(device.svalue1 / 100 ).toFixed(1)}
             {...this.props} />
       default :
         break;
