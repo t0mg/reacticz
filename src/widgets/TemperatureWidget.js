@@ -5,7 +5,7 @@ import './TemperatureWidget.css';
 class TemperatureWidget extends Component {
 
   render() {
-    if (this.props.humonly) {
+    if (this.props.humonly !== undefined) {
       const humidityStatus = ((this.props.humstat === 0) ? 'Normal' : (this.props.humstat === 1) ? 'Comfortable' : (this.props.humstat === 2) ? 'Dry' : 'Wet');
       return (
       <GenericWidget class="TemperatureWidget" icon="humidity"
