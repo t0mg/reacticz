@@ -8,16 +8,52 @@ class SettingsView extends Component {
     super(props);
     this.state = {
       mqttBrokerUrl: props.config ? props.config.mqttBrokerUrl : '',
+      mqttAuthChecked: props.config ? props.config.mqttAuthChecked : false,
+      mqttLogin: props.config ? props.config.mqttLogin : '',
+      mqttPassword: props.config ? props.config.mqttPassword : '',
       domoticzUrl: props.config ? props.config.domoticzUrl : '',
+      domoticzAuthChecked: props.config ? props.config.domoticzAuthChecked : false,
+      domoticzLogin: props.config ? props.config.domoticzLogin : '',
+      domoticzPassword: props.config ? props.config.domoticzPassword : ''
     };
   }
 
   handleMqttChange = (event) => {
     this.setState({mqttBrokerUrl: event.target.value});
   }
+ 
+  handleMqttLoginChange = (event) => {
+    this.setState({mqttLogin: event.target.value});
+  }
 
-  handleDomoticzChange = (event) => {
+  handleMqttPasswordChange = (event) => {
+    this.setState({mqttPassword: event.target.value});
+  }
+
+  handleMqttAuthCheckbox = (event) => {
+    if (this.state.mqttAuthChecked) {
+      this.setState({mqttLogin: '', mqttPassword: ''});
+    }
+    this.setState({mqttAuthChecked: !this.state.mqttAuthChecked});
+  }
+  
+  handleDomoticzUrlChange = (event) => {
     this.setState({domoticzUrl: event.target.value});
+  }
+
+  handleDomoticzLoginChange = (event) => {
+    this.setState({domoticzLogin: event.target.value});
+  }
+
+  handleDomoticzPasswordChange = (event) => {
+    this.setState({domoticzPassword: event.target.value});
+  }
+  
+  handleDomoticzAuthCheckbox = (event) => {
+    if (this.state.domoticzAuthChecked) {
+      this.setState({domoticzLogin: '', domoticzPassword: ''});
+    }
+    this.setState({domoticzAuthChecked: !this.state.domoticzAuthChecked});
   }
 
   handleSubmit = (event) => {
@@ -34,22 +70,61 @@ class SettingsView extends Component {
           Documentation is available on  <a href="https://github.com/t0mg/reacticz#reacticz" target="_blank">GitHub</a>.</p>
           <p>Please setup your server config to proceed.</p>
         </div>;
-    const mqttOk = this.props.status ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
+    const mqttAuthRequired = (this.state.mqttAuthChecked) ?
+        <fieldset>
+          <label>
+            Username:
+            <input type="text" value={this.state.mqttLogin} placeholder="Username" onChange={this.handleMqttLoginChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" value={this.state.mqttPassword} placeholder="Password" onChange={this.handleMqttPasswordChange} />
+          </label>
+        </fieldset> : '';
+    const domoticzAuthRequired = (this.state.domoticzAuthChecked) ?
+        <fieldset>
+          <label>
+            Username:
+            <input type="text" value={this.state.domoticzLogin} placeholder="Username" onChange={this.handleDomoticzLoginChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" value={this.state.domoticzPassword} placeholder="Password" onChange={this.handleDomoticzPasswordChange} />
+          </label>
+        </fieldset> : '';
+    const mqttOk = this.props.mqttStatus ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
+    const domoticzOk = this.props.domoticzStatus ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
     return (
       <div className="SettingsView">
         {welcome}
         <h2>Server Settings</h2>
         <p>To use Reacticz you need a working Domoticz server and a configured MQTT broker with websockets enabled (see <a href="https://github.com/t0mg/reacticz#requirements" target="_blank">requirements</a>).</p>
         <form onSubmit={this.handleSubmit}>
+          <h3>MQTT</h3>
           <label>
-            MQTT Broker URL: {mqttOk}
+            Broker URL: {mqttOk}
             <input type="text" value={this.state.mqttBrokerUrl} placeholder="ws://mqtt-broker:port" onChange={this.handleMqttChange} />
           </label>
           <br/>
           <label>
-            Domoticz server URL:
-            <input type="text" value={this.state.domoticzUrl} placeholder="http://domoticz-server:port" onChange={this.handleDomoticzChange} />
+            Authentication required:
+            <input type="checkbox" onChange={this.handleMqttAuthCheckbox} checked={this.state.mqttAuthChecked} ></input>
           </label>
+          <br/>
+          {mqttAuthRequired}
+          <br/>
+          <h3>Domoticz</h3>
+          <label>
+            Server URL: {domoticzOk}
+            <input type="text" value={this.state.domoticzUrl} placeholder="http://domoticz-server:port" onChange={this.handleDomoticzUrlChange} />
+          </label>
+          <br/>
+          <label>
+            Authentication required:
+            <input type="checkbox" onChange={this.handleDomoticzAuthCheckbox} checked={this.state.domoticzAuthChecked} ></input>
+          </label>
+          <br/>
+          {domoticzAuthRequired}
           <br /><input type="submit" value="Apply &amp; Save" />
         </form>
       </div>
