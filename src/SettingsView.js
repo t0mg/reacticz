@@ -52,7 +52,7 @@ class SettingsView extends Component {
         Documentation is available on  <a href="https://github.com/t0mg/reacticz#reacticz" target="_blank">GitHub</a>.</p>
         <p>Please setup your server config to proceed.</p>
       </div>
-	);
+    );
   }
   
   renderMqttAuthForm = () => {
