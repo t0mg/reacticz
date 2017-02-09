@@ -1,3 +1,9 @@
 language: node_js
 node_js:
-  - "node"
+  - "node" # Last stable version.
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run ci-test
+  - npm run build
