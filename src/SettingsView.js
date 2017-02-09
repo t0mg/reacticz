@@ -42,40 +42,58 @@ class SettingsView extends Component {
     event.preventDefault();
     this.props.onChange(this.state);
   }
+  
+  renderWelcomeMsg = () => {
+    return(
+      <div>
+        <h1>Reacticz</h1>
+        <img src={icon} alt="Reacticz logo"/>
+        <p>Welcome to Reacticz, the minimalistic <a href="http://www.domoticz.com" target="_blank">Domoticz</a> dashboard!<br/>
+        Documentation is available on  <a href="https://github.com/t0mg/reacticz#reacticz" target="_blank">GitHub</a>.</p>
+        <p>Please setup your server config to proceed.</p>
+      </div>
+	);
+  }
+  
+  renderMqttAuthForm = () => {
+    return(
+      <fieldset>
+        <label>
+          Username:
+          <input type="text" value={this.state.mqttLogin} name="mqttLogin" placeholder="Username" onChange={this.handleChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={this.state.mqttPassword} name="mqttPassword" placeholder="Password" onChange={this.handleChange} />
+        </label>
+      </fieldset>
+    );
+  }
+  
+  renderDomoticzAuthForm = () => {
+    return(
+      <fieldset>
+        <label>
+          Username:
+          <input type="text" value={this.state.domoticzLogin} name="domoticzLogin" placeholder="Username" onChange={this.handleChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={this.state.domoticzPassword} name="domoticzPassword" placeholder="Password" onChange={this.handleChange} />
+        </label>
+      </fieldset>
+    );
+  }
 
   render() {
-    const welcome = (this.props.config && this.props.config.mqttBrokerUrl) ? '' :
-        <div>
-          <h1>Reacticz</h1>
-          <img src={icon} alt="Reacticz logo"/>
-          <p>Welcome to Reacticz, the minimalistic <a href="http://www.domoticz.com" target="_blank">Domoticz</a> dashboard!<br/>
-          Documentation is available on  <a href="https://github.com/t0mg/reacticz#reacticz" target="_blank">GitHub</a>.</p>
-          <p>Please setup your server config to proceed.</p>
-        </div>;
-    const mqttAuthRequired = (this.state.mqttAuthChecked) ?
-        <fieldset>
-          <label>
-            Username:
-            <input type="text" value={this.state.mqttLogin} name="mqttLogin" placeholder="Username" onChange={this.handleChange} />
-          </label>
-          <label>
-            Password:
-            <input type="password" value={this.state.mqttPassword} name="mqttPassword" placeholder="Password" onChange={this.handleChange} />
-          </label>
-        </fieldset> : '';
-    const domoticzAuthRequired = (this.state.domoticzAuthChecked) ?
-        <fieldset>
-          <label>
-            Username:
-            <input type="text" value={this.state.domoticzLogin} name="domoticzLogin" placeholder="Username" onChange={this.handleChange} />
-          </label>
-          <label>
-            Password:
-            <input type="password" value={this.state.domoticzPassword} name="domoticzPassword" placeholder="Password" onChange={this.handleChange} />
-          </label>
-        </fieldset> : '';
+    const welcome = (this.props.config && this.props.config.mqttBrokerUrl) ? '' : this.renderWelcomeMsg();
+
+    const mqttAuthRequired = (this.state.mqttAuthChecked) ? this.renderMqttAuthForm() : '';
+    const domoticzAuthRequired = (this.state.domoticzAuthChecked) ? this.renderDomoticzAuthForm() : '';
+
     const mqttOk = this.props.mqttStatus ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
     const domoticzOk = this.props.domoticzStatus ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
+
     return (
       <div className="SettingsView">
         {welcome}
