@@ -38,7 +38,7 @@ class JSONClientSingleton {
     }
 
     // Check if connection is ok with parameters
-    axios.head(this.serverUrl+ '/json.htm', axiosConfig).then(response => {
+    axios.head(this.serverUrl+ '/json.htm', this.axiosConfig).then(response => {
       this.setConnected_(true);
     }).catch(error => {
       this.setConnected_(false);
