@@ -27,14 +27,14 @@ class JSONClientSingleton {
     this.eventHandler = eventHandler;
   }
 
-  setServerUrl(url, login, password) {
+  setServerUrl(url, opt_login, opt_password) {
     this.serverUrl = url;  
     this.axiosConfig = {};
-    if (login  && password) {
-        this.axiosConfig.auth = {
-            username: login,
-            password: password
-        };
+    if (opt_login && opt_password) {
+      this.axiosConfig.auth = {
+        username: opt_login,
+        password: opt_password
+      };
     }
 
     // Check if connection is ok with parameters
