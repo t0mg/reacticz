@@ -18,35 +18,17 @@ class SettingsView extends Component {
     };
   }
 
-  handleMqttChange = (event) => {
-    this.setState({mqttBrokerUrl: event.target.value});
+  handleChange = event => {
+    const newPartialState = {};
+    newPartialState[event.target.name] = event.target.value;
+    this.setState(newPartialState);
   }
  
-  handleMqttLoginChange = (event) => {
-    this.setState({mqttLogin: event.target.value});
-  }
-
-  handleMqttPasswordChange = (event) => {
-    this.setState({mqttPassword: event.target.value});
-  }
-
   handleMqttAuthCheckbox = (event) => {
     if (this.state.mqttAuthChecked) {
       this.setState({mqttLogin: '', mqttPassword: ''});
     }
     this.setState({mqttAuthChecked: !this.state.mqttAuthChecked});
-  }
-  
-  handleDomoticzUrlChange = (event) => {
-    this.setState({domoticzUrl: event.target.value});
-  }
-
-  handleDomoticzLoginChange = (event) => {
-    this.setState({domoticzLogin: event.target.value});
-  }
-
-  handleDomoticzPasswordChange = (event) => {
-    this.setState({domoticzPassword: event.target.value});
   }
   
   handleDomoticzAuthCheckbox = (event) => {
@@ -56,7 +38,7 @@ class SettingsView extends Component {
     this.setState({domoticzAuthChecked: !this.state.domoticzAuthChecked});
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.onChange(this.state);
   }
@@ -74,22 +56,22 @@ class SettingsView extends Component {
         <fieldset>
           <label>
             Username:
-            <input type="text" value={this.state.mqttLogin} placeholder="Username" onChange={this.handleMqttLoginChange} />
+            <input type="text" value={this.state.mqttLogin} placeholder="Username" onChange={this.handleChange} />
           </label>
           <label>
             Password:
-            <input type="password" value={this.state.mqttPassword} placeholder="Password" onChange={this.handleMqttPasswordChange} />
+            <input type="password" value={this.state.mqttPassword} placeholder="Password" onChange={this.handleChange} />
           </label>
         </fieldset> : '';
     const domoticzAuthRequired = (this.state.domoticzAuthChecked) ?
         <fieldset>
           <label>
             Username:
-            <input type="text" value={this.state.domoticzLogin} placeholder="Username" onChange={this.handleDomoticzLoginChange} />
+            <input type="text" value={this.state.domoticzLogin} placeholder="Username" onChange={this.handleChange} />
           </label>
           <label>
             Password:
-            <input type="password" value={this.state.domoticzPassword} placeholder="Password" onChange={this.handleDomoticzPasswordChange} />
+            <input type="password" value={this.state.domoticzPassword} placeholder="Password" onChange={this.handleChange} />
           </label>
         </fieldset> : '';
     const mqttOk = this.props.mqttStatus ? <span className="Status OK">connected!</span> : <span className="Status">unavailable</span>;
@@ -103,7 +85,7 @@ class SettingsView extends Component {
           <h3>MQTT</h3>
           <label>
             Broker URL: {mqttOk}
-            <input type="text" value={this.state.mqttBrokerUrl} placeholder="ws://mqtt-broker:port" onChange={this.handleMqttChange} />
+            <input type="text" value={this.state.mqttBrokerUrl} placeholder="ws://mqtt-broker:port" onChange={this.handleChange} />
           </label>
           <br/>
           <label>
@@ -116,7 +98,7 @@ class SettingsView extends Component {
           <h3>Domoticz</h3>
           <label>
             Server URL: {domoticzOk}
-            <input type="text" value={this.state.domoticzUrl} placeholder="http://domoticz-server:port" onChange={this.handleDomoticzUrlChange} />
+            <input type="text" value={this.state.domoticzUrl} placeholder="http://domoticz-server:port" onChange={this.handleChange} />
           </label>
           <br/>
           <label>
