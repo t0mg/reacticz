@@ -383,26 +383,28 @@ class App extends Component {
     const shouldConfigure = !this.state.serverConfig.mqttBrokerUrl || !this.state.serverConfig.domoticzUrl;
     const view = this.renderCurrentView(shouldConfigure ? View.SERVER_SETTINGS : undefined);
     const currentView = this.state.currentView;
+    const cssIcon = this.state.theme.icon;
+    const cssIconSelected = this.state.theme.iconSelected;
     return (
       <div className="App">
         <div key='menu' className={this.state.menuOpen ? 'appbar open' : 'appbar'} style={{display: shouldConfigure ? 'none' : ''}}>
           <button key='toggle' title='Menu' onClick={this.toggleMenu}>
-            <svg className="icon"><use xlinkHref="#settings" /></svg>
+            <svg className="icon" style={{fill: cssIcon}}><use xlinkHref="#settings" /></svg>
           </button>
           {currentView !== View.DASHBOARD &&
                <button onClick={this.toMainView} title='Home'>
-               <svg className='icon'><use xlinkHref="#home" /></svg></button>}
+               <svg className='icon' style={{fill: cssIcon}}><use xlinkHref="#home" /></svg></button>}
           {currentView === View.DASHBOARD &&
                <button onClick={this.toggleLayoutEdit} title='Layout lock'>
-               <svg className={'icon' + (currentView === View.DASHBOARD ? ' selected' : '')}><use xlinkHref={this.state.layoutLocked ? '#lock' : '#lock-open'} /></svg></button>}
+               <svg className='icon' style={{fill: (currentView === View.DASHBOARD ? cssIconSelected : cssIcon)}}><use xlinkHref={this.state.layoutLocked ? '#lock' : '#lock-open'} /></svg></button>}
           <button onClick={this.toggleDeviceList} title='Device selection'>
-            <svg className={'icon' + (currentView === View.DEVICE_LIST ? ' selected' : '')}><use xlinkHref='#playlist-add-check' /></svg>
+            <svg className='icon' style={{fill: (currentView === View.DEVICE_LIST ? cssIconSelected : cssIcon)}}><use xlinkHref='#playlist-add-check' /></svg>
           </button>
           <button onClick={this.toggleSettings} title='Server settings'>
-            <svg className={'icon' + (currentView === View.SERVER_SETTINGS ? ' selected' : '')}><use xlinkHref='#router' /></svg>
+            <svg className='icon' style={{fill: (currentView === View.SERVER_SETTINGS ? cssIconSelected : cssIcon)}}><use xlinkHref='#router' /></svg>
           </button>
           <button onClick={this.toggleAbout} title='About'>
-            <svg className={'icon' + (currentView === View.ABOUT ? ' selected' : '')}><use xlinkHref='#info-outline' /></svg>
+            <svg className='icon' style={{fill: (currentView === View.ABOUT ? cssIconSelected : cssIcon)}}><use xlinkHref='#info-outline' /></svg>
           </button>
         </div>
         {view}

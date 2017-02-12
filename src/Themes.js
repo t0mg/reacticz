@@ -1,5 +1,7 @@
 const Themes = {
   'Default' : {
+    icon: '#666',
+    iconSelected: '#ffbc00',
     background: 'white',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -15,6 +17,8 @@ const Themes = {
     textOn: '#3E2723'
   },
   'Lighter' : {
+    icon: '#666',
+    iconSelected: '#ffbc00',
     background: 'white',
     blindClosed: '#a9a9a9',
     blindOpen: '#718bbb',
@@ -30,6 +34,8 @@ const Themes = {
     textOn: 'white'
   },
   'Light Blue' : {
+    icon: '#666',
+    iconSelected: '#3366FF',
     background: '#99CCFF',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -44,7 +50,9 @@ const Themes = {
     textOff: 'white',
     textOn: 'white'
   },
-    'Light Green' : {
+  'Light Green' : {
+    icon: '#666',
+    iconSelected: '#009900',
     background: '#66FF99',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
