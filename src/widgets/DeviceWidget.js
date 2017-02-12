@@ -8,6 +8,7 @@ import MeterWidget from './MeterWidget'
 import MotionSensorWidget from './MotionSensorWidget'
 import PercentWidget from './PercentWidget'
 import RainWidget from './RainWidget'
+import SmokeSensorWidget from './SmokeSensorWidget'
 import SwitchOnOff from './SwitchOnOff'
 import SwitchBlinds from './SwitchBlinds'
 import SwitchDimmer from './SwitchDimmer'
@@ -49,9 +50,10 @@ class DeviceWidget extends Component {
     switch (device.switchType) {
       case 'Blinds' :
       case 'Blinds Inverted' :
+      case 'Venetian Blinds EU' :
+      case 'Venetian Blinds US' :
         return <SwitchBlinds idx={device.idx} label={device.name}
-            value={device.nvalue}
-            inverted={device.switchType==='Blinds Inverted'} {...this.props} />;
+            value={device.nvalue} type={device.switchType} {...this.props} />;
       case 'Contact' :
         return <ContactWidget label={device.name} value={device.svalue1}
             {...this.props} />
@@ -62,7 +64,7 @@ class DeviceWidget extends Component {
         }
         return <SwitchDimmer idx={device.idx} label={device.name}
             device={device}
-            value={device.svalue1} {...this.props} />;
+            value={device.nvalue === 0 ? 0 : device.svalue1} {...this.props} />;
       case 'Media Player' :
         return <MediaPlayer idx={device.idx} label={device.name}
             value={device.nvalue}
@@ -72,8 +74,18 @@ class DeviceWidget extends Component {
         return <MotionSensorWidget label={device.name} value={Number(device.nvalue)}
             {...this.props} />
       case 'On/Off' :
+        if (device.stype === 'KD101 smoke detector') {
+          return <SmokeSensorWidget idx={device.idx} label={device.name}
+              value={device.nvalue} {...this.props} />;
+        }
         return <SwitchOnOff idx={device.idx} label={device.name}
             value={device.nvalue} {...this.props} />;
+      case 'Push Off Button' :
+        return <SwitchOnOff idx={device.idx} label={device.name}
+            pushOff={true} value={device.nvalue} {...this.props} />
+      case 'Push On Button' :
+        return <SwitchOnOff idx={device.idx} label={device.name}
+            pushOn={true} value={device.nvalue} {...this.props} />
       case 'Selector' :
         return <SwitchSelector idx={device.idx} label={device.name}
             value={device.svalue1}
