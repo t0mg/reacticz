@@ -1,8 +1,5 @@
 CACHE MANIFEST
-# Version 0.1.9b
-
-CACHE:
-index.html
+# Version 0.1.9c
 
 NETWORK:
 *
