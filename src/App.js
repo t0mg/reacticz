@@ -182,6 +182,19 @@ class App extends Component {
       this.store.write('themeId', themeId);
     }
   }
+  
+  handleConfigIdChange = (id) => {
+    this.configId = id;
+    const list = this.store.read('whitelist' + this.configId) || [];
+    const layout = this.store.read('layout' + this.configId) || [];
+    this.setState({
+      whitelist: list,
+      layout: layout
+    });
+    for (let i = 0; i < list.length; i++) {
+      this.requestDeviceStatus(list[i]);
+    }
+  }
 
   handleDeviceListChange = (list) => {
     const devices = Object.assign({}, this.state.devices);
@@ -291,6 +304,10 @@ class App extends Component {
   toMainView = () => {
     this.setState({ 'currentView': View.DASHBOARD });
   }
+  
+  getLayoutsList = () => {
+    return (Object.keys(this.store.ls).filter(function (propertyName) { return propertyName.indexOf("layout") === 0;}));
+  }
 
   cleanupLayout(list) {
     // Clear layout items for devices that are no longer present.
@@ -399,13 +416,26 @@ class App extends Component {
     const menuIconSelectedStyle = {
       fill: this.state.theme.menuIconSelected
     };
-	
+    const allLayouts = this.getLayoutsList();
+    const nbLayouts = allLayouts.length;
+    const currentLayout = allLayouts.indexOf("layout" + this.configId);
+    const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
+    const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
+    const prevConfigId = nbLayouts > 1 ? allLayouts[prevLayout].substring(6) : '';
+    const nextConfigId = nbLayouts > 1 ? allLayouts[nextLayout].substring(6) : '';
+    
     return (
       <div className="App">
         <div key='menu' className={this.state.menuOpen ? 'appbar open' : 'appbar'} style={{display: shouldConfigure ? 'none' : ''}}>
           <button key='toggle' title='Menu' onClick={this.toggleMenu}>
             <svg className="icon" style={menuIconStyle}><use xlinkHref="#settings" /></svg>
           </button>
+          {nbLayouts > 1 &&
+            <button key='prev' title='Previous Layout' onClick={() => this.handleConfigIdChange(prevConfigId)}>
+            <svg className="icon" style={menuIconStyle}><use xlinkHref="#prev" /></svg></button>}
+          {nbLayouts > 1 &&
+            <button key='next' title='Next Layout' onClick={() => this.handleConfigIdChange(nextConfigId)}>
+            <svg className="icon" style={menuIconStyle}><use xlinkHref="#next" /></svg></button>}
           {currentView !== View.DASHBOARD &&
                <button onClick={this.toMainView} title='Home'>
                <svg className='icon' style={menuIconStyle}><use xlinkHref="#home" /></svg></button>}
