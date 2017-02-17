@@ -79,17 +79,7 @@ class App extends Component {
       this.setState({serverConfig: storedServerConfig});
     }
     this.readConfigParameter();
-    const allLayouts = this.getLayoutsList();
-    const nbLayouts = allLayouts.length;
-    const currentLayout = allLayouts.indexOf("layout" + this.configId);
-    const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
-    const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
-    const pagination = {
-      nbPages : nbLayouts,
-      prevConfigId : nbLayouts > 1 ? allLayouts[prevLayout].substring(6) : '',
-      nextConfigId : nbLayouts > 1 ? allLayouts[nextLayout].substring(6) : ''
-    };
-    this.setState({configIdPagination: pagination});
+    this.setConfigIdPagination();
   }
 
   componentDidMount() {
@@ -153,6 +143,20 @@ class App extends Component {
       document.title = 'Reacticz (' + this.configId + ')';
     }
   }
+  
+  setConfigIdPagination() {
+    const allLayouts = this.getLayoutsList();
+    const nbLayouts = allLayouts.length;
+    const currentLayout = allLayouts.indexOf("layout" + this.configId);
+    const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
+    const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
+    const pagination = {
+      nbPages : nbLayouts,
+      prevConfigId : nbLayouts > 1 ? allLayouts[prevLayout].substring(6) : '',
+      nextConfigId : nbLayouts > 1 ? allLayouts[nextLayout].substring(6) : ''
+    };
+    this.setState({configIdPagination: pagination});
+  }
 
   readConfigParameter = (opt_param) => {
     const param = opt_param || document.location.hash.slice(1);
@@ -210,6 +214,7 @@ class App extends Component {
     for (let i = 0; i < list.length; i++) {
       this.requestDeviceStatus(list[i]);
     }
+    this.setConfigIdPagination();
   }
 
   handleDeviceListChange = (list) => {
