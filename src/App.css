@@ -80,10 +80,14 @@ body {
   height: 24px;
 }
 
+.layout {
+  margin-bottom: 50px;
+}
+
 .footer {
   position:fixed;
-  left:0px;
-  bottom:0px;
+  left:0;
+  bottom:0;
   height:50px;
   width:100%;
   background-color: rgba(255, 255, 255, .85);
@@ -92,6 +96,11 @@ body {
 
 .footer .left {
     float: left;
+}
+
+.footer .title {
+  text-align: center;
+  line-height: 50px;
 }
 
 .footer .right {

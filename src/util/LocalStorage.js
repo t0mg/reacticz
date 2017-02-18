@@ -32,7 +32,7 @@ class LocalStorage {
     if (this.ls) {
       return Object.keys(this.ls);
     }
-    return null;
+    return [];
   }
 
   delete(key) {

@@ -43,7 +43,7 @@ class App extends Component {
         domoticzPassword: ''
       },
       configIdPagination: {
-        nbPages: 1,
+        nbConfigId: 1,
         prevConfigId: '',
         nextConfigId: ''
       },
@@ -151,7 +151,7 @@ class App extends Component {
     const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
     const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
     const pagination = {
-      nbPages : nbLayouts,
+      nbConfigId : nbLayouts,
       prevConfigId : nbLayouts > 1 ? allLayouts[prevLayout].substring(6) : '',
       nextConfigId : nbLayouts > 1 ? allLayouts[nextLayout].substring(6) : ''
     };
@@ -328,11 +328,7 @@ class App extends Component {
 
   getLayoutsList = () => {
     const keys = this.store.getKeys();
-    if (keys) {
-      return keys.filter(function (propertyName) { return propertyName.indexOf("layout") === 0;});
-    }
-    return [];
-    
+    return keys.filter(function (propertyName) { return propertyName.indexOf("layout") === 0;});
   }
 
   cleanupLayout(list) {
@@ -442,10 +438,14 @@ class App extends Component {
               <button key='prev' title='Previous Layout' onClick={() => this.handleConfigIdChange(this.state.configIdPagination.prevConfigId)}>
               <svg className="icon" style={menuIconStyle}><use xlinkHref="#arrow-left-bold-box-outline" /></svg></button>
             </div>
-              <div className='right'>
+            <div className='right'>
               <button key='next' title='Next Layout' onClick={() => this.handleConfigIdChange(this.state.configIdPagination.nextConfigId)}>
               <svg className="icon" style={menuIconStyle}><use xlinkHref="#arrow-right-bold-box-outline" /></svg></button>
             </div>
+            {/*
+              TODO: Store the name for layouts
+              <div className='title'>Layout {this.configId}</div> 
+            */}
           </div>);
   }
 
@@ -459,7 +459,7 @@ class App extends Component {
     const menuIconSelectedStyle = {
       fill: this.state.theme.menuIconSelected
     };
-    const footer = this.state.configIdPagination.nbPages > 1 ? this.renderFooter() : '';
+    const footer = this.state.configIdPagination.nbConfigId > 1 ? this.renderFooter() : '';
 
     return (
       <div className="App">
