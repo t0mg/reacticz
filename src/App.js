@@ -147,9 +147,11 @@ class App extends Component {
   setConfigIdPagination() {
     const allLayouts = this.getLayoutsList();
     const nbLayouts = allLayouts.length;
-    const currentLayout = allLayouts.indexOf("layout" + this.configId);
-    const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
-    const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
+    if (nbLayouts > 1) {
+      const currentLayout = allLayouts.indexOf("layout" + this.configId);
+      const prevLayout = currentLayout > 0 ? currentLayout-1 : nbLayouts-1;
+      const nextLayout = currentLayout < nbLayouts-1 ? currentLayout+1 : 0;
+    }
     const pagination = {
       nbConfigId : nbLayouts,
       prevConfigId : nbLayouts > 1 ? allLayouts[prevLayout].substring(6) : '',
