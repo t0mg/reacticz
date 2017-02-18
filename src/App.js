@@ -54,6 +54,7 @@ class App extends Component {
       devices: {},
       deviceSpecs: {},
       layout: [],
+      name: '',
       themeId: 'Default',
       theme: {}
     };
@@ -72,6 +73,7 @@ class App extends Component {
     this.setState({
       whitelist: this.store.read('whitelist' + this.configId) || [],
       layout: this.store.read('layout' + this.configId) || [],
+      name: this.store.read('name' + this.configId) || 'Layout ' + this.configId,
       themeId: themeId,
       theme: Themes[themeId] || {}
     });
@@ -202,14 +204,21 @@ class App extends Component {
       this.store.write('themeId', themeId);
     }
   }
+ 
+  handleNameChange = (name) => {
+    this.setState({name: name});
+    this.store.write('name' + this.configId, name);
+  }
 
   handleConfigIdChange = (id) => {
     this.configId = id;
     const list = this.store.read('whitelist' + this.configId) || [];
     const layout = this.store.read('layout' + this.configId) || [];
+    const name = this.store.read('name' + this.configId) ||  'Layout ' + this.configId;
     this.setState({
       whitelist: list,
-      layout: layout
+      layout: layout,
+      name: name
     });
     for (let i = 0; i < list.length; i++) {
       this.requestDeviceStatus(list[i]);
@@ -364,7 +373,7 @@ class App extends Component {
       case View.SERVER_SETTINGS:
         return (<SettingsView config={this.state.serverConfig} mqttStatus={this.state.mqttConnected} domoticzStatus={this.state.domoticzConnected} onChange={this.handleServerConfigChange} importConfigPrompt={this.importConfigPrompt}></SettingsView>);
       case View.DEVICE_LIST:
-        return (<DeviceListView onWhitelistChange={this.handleDeviceListChange} idxWhitelist={this.state.whitelist}></DeviceListView>);
+        return (<DeviceListView onWhitelistChange={this.handleDeviceListChange} idxWhitelist={this.state.whitelist} name={this.state.name} onNameChange={this.handleNameChange}></DeviceListView>);
       default:
         if (this.state.whitelist.length === 0) {
           return (
@@ -443,10 +452,7 @@ class App extends Component {
               <button key='next' title='Next Layout' onClick={() => this.handleConfigIdChange(this.state.configIdPagination.nextConfigId)}>
               <svg className="icon" style={menuIconStyle}><use xlinkHref="#arrow-right-bold-box-outline" /></svg></button>
             </div>
-            {/*
-              TODO: Store the name for layouts
-              <div className='title'>Layout {this.configId}</div> 
-            */}
+            <div className='title'>{this.state.name}</div>
           </div>);
   }
 
