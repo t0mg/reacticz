@@ -397,6 +397,7 @@ class App extends Component {
           } else {
           widget = <DeviceWidget
               className="widget"
+              layoutWidth={deviceLayout.w}
               readOnly={!this.state.layoutLocked}
               key={'item'+ deviceId}
               device={device}
