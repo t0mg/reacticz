@@ -491,7 +491,7 @@ class App extends Component {
           </button>
         </div>
         {view}
-        {footer}
+        {(currentView === View.DASHBOARD || currentView === View.DEVICE_LIST) && footer}
       </div>
     );
   }
