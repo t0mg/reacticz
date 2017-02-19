@@ -82,7 +82,7 @@ class DeviceWidget extends Component {
         return <MotionSensorWidget label={device.name} value={Number(device.nvalue)}
             {...this.props} />
       case 'On/Off' :
-        if (device.stype === 'KD101 smoke detector' || device.description.includes('Reacticz: smoke sensor')) {
+        if (device.stype === 'KD101 smoke detector' || (typeof device.description === 'string' && device.description.includes('Reacticz: smoke sensor'))) {
           return <SmokeSensorWidget idx={device.idx} label={device.name}
               value={device.nvalue} {...this.props} />;
         }
