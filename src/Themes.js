@@ -1,5 +1,7 @@
 const Themes = {
   'Default' : {
+    appBackground: 'white',
+    appText: 'black',
     background: 'white',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -10,12 +12,16 @@ const Themes = {
     buttonOn: '#ffbc00',
     menuIcon: '#666',
     menuIconSelected: '#ffbc00',
+    overlayBackground: 'white',
+    overlayText: '#666',
     text: '#666',
     textMixed: 'white',
     textOff: 'white',
     textOn: '#3E2723'
   },
   'Lighter' : {
+    appBackground: 'white',
+    appText: 'black',
     background: 'white',
     blindClosed: '#a9a9a9',
     blindOpen: '#718bbb',
@@ -26,12 +32,16 @@ const Themes = {
     buttonOn: '#ffbc00',
     menuIcon: '#666',
     menuIconSelected: '#ffbc00',
+    overlayBackground: 'white',
+    overlayText: '#666',
     text: '#808080',
     textMixed: '#808080',
     textOff: '#808080',
     textOn: 'white'
   },
   'Light Blue' : {
+    appBackground: 'white',
+    appText: 'black',
     background: '#99CCFF',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -42,12 +52,16 @@ const Themes = {
     buttonOn: '#3366FF',
     menuIcon: '#666',
     menuIconSelected: '#3366FF',
+    overlayBackground: 'white',
+    overlayText: '#666',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
     textOn: 'white'
   },
   'Light Green' : {
+    appBackground: 'white',
+    appText: 'black',
     background: '#66FF99',
     blindClosed: '#5d5d5d',
     blindOpen: '#303F9F',
@@ -58,10 +72,32 @@ const Themes = {
     buttonOn: '#009900',
     menuIcon: '#666',
     menuIconSelected: '#009900',
+    overlayBackground: 'white',
+    overlayText: '#666',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
     textOn: 'white'
+  },
+  'Dark Grey' : {
+    appBackground: '#303030',
+    appText: '#F5F5F5',
+    background: '#424242',
+    blindClosed: '#5d5d5d',
+    blindOpen: '#303F9F',
+    blindTextOff: '#F5F5F5',
+    blindTextOn: '#FBC02D',
+    buttonMixed: '#4a4a4a',
+    buttonOff: '#616161',
+    buttonOn: '#607D8B',
+    menuIcon: '#607D8B',
+    menuIconSelected: '#90A4AE',
+    overlayBackground: '#424242',
+    overlayText: '#F5F5F5',
+    text: '#F5F5F5',
+    textMixed: '#F5F5F5',
+    textOff: '#F5F5F5',
+    textOn: '#F5F5F5'
   }
 }
 export default Themes
