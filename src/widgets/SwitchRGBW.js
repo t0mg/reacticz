@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Slider from './helpers/Slider';
 import JSONClientSingleton from '../util/JSONClientSingleton'
 
 import './SwitchRGBW.css';
@@ -14,7 +15,6 @@ class SwitchRGBW extends Component {
       sat: 0
     }
     this.json = new JSONClientSingleton();
-    this.hueStrip = null;
   }
 
   toggle = () => {
@@ -57,13 +57,8 @@ class SwitchRGBW extends Component {
     return '#' + this.toHexStr(r) + this.toHexStr(g) + this.toHexStr(b);
   }
 
-  changeHue = (event) => {
-    if (this.props.readOnly) {
-      return;
-    }
-    const box = this.hueStrip.getBoundingClientRect();
-    const hue = (event.clientX - box.left) / box.width;
-    this.setState({hue: hue, sat: 1});
+  changeHue = (value) => {
+    this.setState({hue: value, sat: 1});
   }
 
   changeColor = (color) => {
@@ -92,6 +87,9 @@ class SwitchRGBW extends Component {
 
   render() {
     const theme = this.props.theme;
+    const style = {
+      backgroundColor: this.props.readOnly ? '' : theme.background
+    };
     const buttonStyle = theme ? {
       background: this.props.value === 0 ? theme.buttonOff : theme.buttonOn,
       color: this.props.value === 0 ? theme.textOff : theme.textOn
@@ -106,16 +104,19 @@ class SwitchRGBW extends Component {
     const lv4 = this.hslToHex(this.state.hue, this.state.sat,
         this.state.sat ? .5 : .8);
     return (
-      <div className="SwitchRGBW">
+      <div className="SwitchRGBW" style={style}>
         <button className="toggle" style={buttonStyle} title={value} onClick={this.toggle}>{this.props.label}</button>
         {this.props.layoutWidth > 1 && <div className="colorSelect">
-          <div className="hue" ref={(div) => this.hueStrip = div} onClick={this.changeHue}></div>
           <div className="swatch">
             <button title="Color at 25%" style={{background: lv1}} onClick={() => this.changeColor(lv1)}></button>
             <button title="Color at 50%" style={{background: lv2}} onClick={() => this.changeColor(lv2)}></button>
             <button title="Color at 75%" style={{background: lv3}} onClick={() => this.changeColor(lv3)}></button>
             <button title="Color at 100%" style={{background: lv4}} onClick={() => this.changeColor(lv4)}></button>
             <div style={{background: theme.buttonOn}}><button className="white" style={{borderColor: theme.buttonOn}} title="Return to white" onClick={this.toWhite}></button></div>
+          </div>
+          <div className="hue">
+            <Slider disabled={this.props.readOnly} edgeTolerance={0.1}
+                onChange={this.changeHue} value={this.state.hue} />
           </div>
         </div>}
       </div>

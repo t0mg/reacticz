@@ -35,6 +35,13 @@ class LocalStorage {
     return [];
   }
 
+  getKeys() {
+    if (this.ls) {
+      return Object.keys(this.ls);
+    }
+    return [];
+  }
+
   delete(key) {
     this.ls && this.ls.removeItem(key);
   }
