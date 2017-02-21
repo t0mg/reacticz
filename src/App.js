@@ -537,7 +537,8 @@ class App extends Component {
     };
     const appStyle = {
       background: this.state.theme.appBackground,
-      color: this.state.theme.appText
+      color: this.state.theme.appText,
+      fill: this.state.theme.menuIcon
     };
 
     const appBarStyle = {
