@@ -268,7 +268,6 @@ class App extends Component {
       this.setState({themeId: themeId, theme: theme});
       this.store.write('themeId', themeId);
     }
-    //document.body.style.backgroundColor = this.state.theme.appBackground;
   }
 
   handleConfigNameChange = (configName) => {
@@ -538,7 +537,7 @@ class App extends Component {
     const appStyle = {
       background: this.state.theme.appBackground,
       color: this.state.theme.appText,
-      fill: this.state.theme.menuIcon
+      fill: this.state.theme.appText
     };
 
     const appBarStyle = {

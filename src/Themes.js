@@ -14,11 +14,11 @@ const Themes = {
     menuIconSelected: '#ffbc00',
     overlayBackground: 'rgba(255, 255, 255, .85)',
     overlayText: '#666',
-    readOnly: '#eeeeee',
     text: '#666',
     textMixed: 'white',
     textOff: 'white',
-    textOn: '#3E2723'
+    textOn: '#3E2723',
+    unlockedBackground: '#eeeeee'
   },
   'Lighter' : {
     appBackground: 'white',
@@ -35,11 +35,11 @@ const Themes = {
     menuIconSelected: '#ffbc00',
     overlayBackground: 'rgba(255, 255, 255, .85)',
     overlayText: '#666',
-    readOnly: '#eeeeee',
     text: '#808080',
     textMixed: '#808080',
     textOff: '#808080',
-    textOn: 'white'
+    textOn: 'white',
+    unlockedBackground: '#eeeeee'
   },
   'Light Blue' : {
     appBackground: 'white',
@@ -56,11 +56,11 @@ const Themes = {
     menuIconSelected: '#3366FF',
     overlayBackground: 'rgba(255, 255, 255, .85)',
     overlayText: '#666',
-    readOnly: '#eeeeee',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
-    textOn: 'white'
+    textOn: 'white',
+    unlockedBackground: '#eeeeee'
   },
   'Light Green' : {
     appBackground: 'white',
@@ -77,11 +77,11 @@ const Themes = {
     menuIconSelected: '#009900',
     overlayBackground: 'rgba(255, 255, 255, .85)',
     overlayText: '#666',
-    readOnly: '#eeeeee',
     text: 'black',
     textMixed: 'white',
     textOff: 'white',
-    textOn: 'white'
+    textOn: 'white',
+    unlockedBackground: '#eeeeee'
   },
   'Dark Grey' : {
     appBackground: '#303030',
@@ -98,11 +98,11 @@ const Themes = {
     menuIconSelected: '#F5F5F5',
     overlayBackground: 'rgba(66, 66, 66, 0.85)',
     overlayText: '#90A4AE',
-    readOnly: '#78909C',
     text: '#F5F5F5',
     textMixed: '#F5F5F5',
     textOff: '#F5F5F5',
-    textOn: '#F5F5F5'
+    textOn: '#F5F5F5',
+    unlockedBackground: '#78909C'
   }
 }
 export default Themes
