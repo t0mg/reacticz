@@ -105,7 +105,7 @@ const Themes = {
     unlockedBackground: '#78909C'
   },
   'Darker' : {
-    appBackground: '#545454',
+    appBackground: '#636363',
     appText: '#dadada',
     background: 'rgba(37, 37, 37, .02)',
     blindClosed: '#5d5d5d',
