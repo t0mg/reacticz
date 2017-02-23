@@ -1,11 +1,5 @@
 <!doctype html>
-<script type="text/javascript">
-if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
-  document.write('<html manifest="%PUBLIC_URL%/ios.manifest" lang="en">');
-} else {
-  document.write('<html lang="en">');
-}
-</script>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -24,17 +18,20 @@ if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <script>
-    // Check if a new cache is available on page load.
-    window.addEventListener('load', function(e) {
-      window.applicationCache.addEventListener('updateready', function(e) {
-        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-          window.location.reload();
-        } else {
-          // Manifest didn't changed. Nothing new to server.
-        }
-      }, false);
-    }, false);
+    <!-- Load ios.manifest on iOS devices -->
+    <script type="text/javascript">
+      if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+        const htmlEl = document.getElementsByTagName('html')[0];
+        htmlEl.setAttribute('manifest', '%PUBLIC_URL%/ios.manifest');
+        // Check if a new cache is available on page load
+        window.addEventListener('load', function(e) {
+          window.applicationCache.addEventListener('updateready', function(e) {
+            if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+              window.location.reload();
+            }
+          }, false);
+        }, false);
+      }
     </script>
     <title>Reacticz</title>
   </head>
