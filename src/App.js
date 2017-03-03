@@ -497,10 +497,8 @@ class App extends Component {
             </div>
           );
         }, this);
-        const style={
-          transform: 'scale(' + this.state.zoom + ')',
-          transformOrigin: 'top left',
-          width: parseFloat(100/this.state.zoom).toFixed(3) + '%'
+        const style = {
+          fontSize: (100 * this.state.zoom) + '%'
         };
         return (
             <ResponsiveGridLayout
