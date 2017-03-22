@@ -69,3 +69,7 @@
 .humonly::after {
   content: '%';
 }
+
+.humonly::after {
+  content: "%";
+}
