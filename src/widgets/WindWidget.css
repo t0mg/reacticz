@@ -1,7 +1,0 @@
-.WindWidget .value2::after {
-  content: ' km/h';
-}
-
-.WindWidget svg {
-  transition: transform .3s ease-out;
-}

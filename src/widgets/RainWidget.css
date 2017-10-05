@@ -1,7 +1,0 @@
-.RainWidget .value1::after {
-  content: ' mm';
-}
-
-.RainWidget .value2::after {
-  content: ' mm/h';
-}
